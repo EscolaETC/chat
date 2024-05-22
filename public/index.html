@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        #login{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #login form{
+            width: 300px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid black;
+        }
+        #login_p1{
+            margin-top: 40px;
+            font-size: 20px;
+        }
+        #login_p2{
+            width: 270px;
+            margin-top: 5px;
+            font-size: 11px;
+            color: blue;
+            cursor: pointer;
+        }
+        #login_label1{
+            width: 280px;
+            margin-top: 30px;
+        }
+        #login_username{
+            width: 280px;
+            height: 30px;
+            margin-top: 5px;
+            border-radius: 0px;
+            border: 1px solid black;
+        }
+        #login_username:focus{
+            outline: none;
+        }
+        #login_label2{
+            width: 280px;
+            margin-top: 30px;
+        }
+        #login_password{
+            width: 280px;
+            height: 30px;
+            margin-top: 5px;
+            border-radius: 0px;
+            border: 1px solid black;
+        }
+        #login_password:focus{
+            outline: none;
+        }
+        #login_button{
+            width: 150px;
+            height: 30px;
+            margin-top: 50px;
+            cursor: pointer;
+        }
+        #register{
+            width: 100%;
+            height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        #register form{
+            width: 300px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid black;
+        }
+        #register_p1{
+            margin-top: 40px;
+            font-size: 20px;
+        }
+        #register_p2{
+            width: 270px;
+            margin-top: 5px;
+            font-size: 11px;
+            color: blue;
+            cursor: pointer;
+        }
+        #register_label1{
+            width: 280px;
+            margin-top: 30px;
+        }
+        #register_username{
+            width: 280px;
+            height: 30px;
+            margin-top: 5px;
+            border-radius: 0px;
+            border: 1px solid black;
+        }
+        #register_username:focus{
+            outline: none;
+        }
+        #register_label2{
+            width: 280px;
+            margin-top: 30px;
+        }
+        #register_password{
+            width: 280px;
+            height: 30px;
+            margin-top: 5px;
+            border-radius: 0px;
+            border: 1px solid black;
+        }
+        #register_password:focus{
+            outline: none;
+        }
+        #register_button{
+            width: 150px;
+            height: 30px;
+            margin-top: 50px;
+            cursor: pointer;
+        }
+        #chat{
+            width: 100%;
+            height: 100vh;
+            display: none;
+            flex-direction: column;
+        }
+        #chat_messages{
+            width: 100%;
+            height: calc(100vh - 51px);
+        }
+        #chat_send{
+            width: 100%;
+            height: 50px;
+            top: calc(100vh - 50px);
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid black;
+        }
+        #chat_send_message{
+            width: 90%;
+            height: 30px;
+            margin: 10px 5px 10px 10px;
+        }
+        #chat_send_message:focus{
+            outline: none;
+        }
+        #chat_send_send{
+            width: 200px;
+            height: 30px;
+            margin: 10px 10px 10px 5px;
+            cursor: pointer;
+        }
+        .chat_messages_message{
+            width: 400px;
+            height: auto;
+            margin: 10px 10px 0px 10px;
+            background-color: rgb(209, 209, 209);
+            border-radius: 0px 10px 10px 10px;
+        }
+        .chat_messages_message_owner{
+            font-size: 14px;
+            color: rgb(41, 41, 41);
+            padding: 5px;
+        }
+        .chat_messages_message_message{
+            padding: 0px 5px 5px 5px;
+            font-size: 18px;
+        }
+        .chat_messages_message_my{
+            margin-left: calc(100% - 420px);
+            border-radius: 10px 0px 10px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="login">
+        <form id="login_form">
+            <p id="login_p1">Login</p>
+            <label for="login_username" id="login_label1">username</label>
+            <input type="text" id="login_username">
+            <label for="login_password" id="login_label2">password</label>
+            <input type="text" id="login_password">
+            <p id="login_p2">Register</p>
+            <input type="submit" value="Login" id="login_button">
+        </form>
+    </div>
+    <div id="register">
+        <form id="register_form">
+            <p id="register_p1">Register</p>
+            <label for="register_username" id="register_label1">username</label>
+            <input type="text" id="register_username">
+            <label for="register_password" id="register_label2">password</label>
+            <input type="text" id="register_password">
+            <input type="submit" value="Register" id="register_button">
+        </form>
+    </div>
+    <div id="chat">
+        <div id="chat_messages">
+            <div class="chat_messages_message chat_messages_message_my">
+                <p class="chat_messages_message_owner">test</p>
+                <p class="chat_messages_message_message">asklfjçalsjf asplfijapsofj</p>
+            </div>
+        </div>
+        <div id="chat_send">
+            <input type="text" id="chat_send_message">
+            <button id="chat_send_send">Send</button>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var global_username;
+        var socket;
+
+        if (sessionStorage.getItem("token")){
+            (async () => {
+                try {
+                    const response = await fetch("/login-by-token", {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "token": sessionStorage.getItem("token")
+                        }
+                    });
+    
+                    if (response.status != 200){
+                        const data = await response.json();
+                        console.log(data.error);
+                        return;
+                    }
+    
+                    const data = await response.json();
+    
+                    document.getElementById("login").style.display = "none";
+                    document.getElementById("chat").style.display = "flex";
+
+                    global_username = data.user.username
+
+                    socket = io();
+    
+                    getMessages();
+                } catch (error) {
+                    console.log(error);
+                }
+            })()
+        }
+
+        async function getMessages(){
+            socket.on("server_messages", (data) => {
+                console.log(data);
+                data.map(message => {
+                    const div1 = document.createElement("div");
+                    const p1 = document.createElement("p");
+                    const p2 = document.createElement("p");
+
+                    div1.className = message.username == global_username ? "chat_messages_message chat_messages_message_my" : "chat_messages_message";
+                    p1.className = "chat_messages_message_owner";
+                    p2.className = "chat_messages_message_message";
+
+                    p1.innerText = message.username;
+                    p2.innerText = message.message;
+
+                    div1.appendChild(p1);
+                    div1.appendChild(p2);
+
+                    document.getElementById("chat_messages").appendChild(div1);
+                })
+            })
+            socket.on("server_new_message", (data) => {
+                const div1 = document.createElement("div");
+                const p1 = document.createElement("p");
+                const p2 = document.createElement("p");
+
+                div1.className = data.username == global_username ? "chat_messages_message chat_messages_message_my" : "chat_messages_message";
+                p1.className = "chat_messages_message_owner";
+                p2.className = "chat_messages_message_message";
+
+                p1.innerText = data.username;
+                p2.innerText = data.message;
+
+                div1.appendChild(p1);
+                div1.appendChild(p2);
+
+                document.getElementById("chat_messages").appendChild(div1);
+            })
+        }
+
+        document.getElementById("chat_send_send").addEventListener("click", () => {
+            const message = document.getElementById("chat_send_message").value;
+            document.getElementById("chat_send_message").value = "";
+
+            if (!message){
+                return;
+            }
+
+            socket.emit("client_message", { username: global_username, message });
+        })
+
+        document.getElementById("login_p2").addEventListener("click", () => {
+            document.getElementById("login").style.display = "none";
+            document.getElementById("register").style.display = "flex";
+        })
+
+        document.getElementById("login_form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById("login_username").value;
+            const password = document.getElementById("login_password").value;
+
+            if (username == "" || password == ""){
+                return;
+            }
+
+            try {
+                const response = await fetch("/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({username, password})
+                });
+
+                if (response.status != 200){
+                    const data = await response.json();
+                    alert(data.error);
+                    return;
+                }
+
+                const data = await response.json();
+
+                document.getElementById("login").style.display = "none";
+                document.getElementById("chat").style.display = "flex";
+
+                console.log(data);
+                sessionStorage.setItem("token", data.token);
+
+                global_username = data.user.username
+
+                socket = io();
+    
+                getMessages();
+            } catch (error) {
+                alert(error);
+            }
+        })
+
+        document.getElementById("register_form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById("register_username").value;
+            const password = document.getElementById("register_password").value;
+
+            if (username == "" || password == ""){
+                return;
+            }
+
+            try {
+                const response = await fetch("/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({username, password})
+                });
+
+                if (response.status != 200){
+                    const data = await response.json();
+                    alert(data.error);
+                    return;
+                }
+
+                const data = await response.json();
+
+                document.getElementById("register").style.display = "none";
+                document.getElementById("chat").style.display = "flex";
+
+                console.log(data);
+
+                sessionStorage.setItem("token", data.token);
+
+                global_username = data.user.username
+
+                socket = io();
+    
+                getMessages();
+            } catch (error) {
+                alert(error);
+            }
+        })
+    </script>
+</body>
+</html>
